@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.neeraj</groupId>
+    <artifactId>mybank</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>9.0.36</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.11.0</version>
+        </dependency>  
+        
+        <!-- When used with Jackson 2.x, Java 8 support is provided via a separate modules.
+        	This dependency `provides com.fasterxml.jackson.datatype.jsr310.JavaTimeModule` -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.11.0</version>
+        </dependency>               
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+            
+            <!--  As we've added shade plugin, we don't need jar-plugin to create the manifest.mf file.
+       	    <plugin>
+    			<groupId>org.apache.maven.plugins</groupId>
+   			 	<artifactId>maven-jar-plugin</artifactId>
+    			<version>3.2.0</version>
+    			
+    			This instructs Maven to create a manifest.mf file, pointing to com.neeraj.ApplicationLauncher.
+    			<configuration>
+        			<archive>
+            			<manifest>
+                			<mainClass>com.neeraj.ApplicationLauncher</mainClass>
+            			</manifest>
+        			</archive>
+   				</configuration>
+		    </plugin>
+		    -->
+       	    <plugin>
+    			<groupId>org.apache.maven.plugins</groupId>
+   			 	<artifactId>maven-shade-plugin</artifactId>
+    			<version>3.2.4</version>
+    			<executions>
+        			<execution>
+        				<!-- As soon as you call `mvn package`, the shade plugin will execute its shade goal 
+        				which makes sure to include all 3rd-party libraries inside your .jar file, in addition to your own source code. -->
+            			<phase>package</phase>
+            			<goals>
+            				<goal>shade</goal>
+            			</goals>
+            			<configuration>
+            				<transformers>
+            					<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+            						<mainClass>com.neeraj.mybank.ApplicationLauncher</mainClass>
+            					</transformer>
+            				</transformers>
+            			</configuration>
+        			</execution>
+   				</executions>
+		    </plugin>		    
+	    </plugins>
+    </build>
+</project>
