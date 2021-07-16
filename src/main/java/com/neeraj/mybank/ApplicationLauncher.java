@@ -11,7 +11,7 @@ public class ApplicationLauncher {
 
 	public static void main(String[] args) throws LifecycleException {
 		/*
-		 *  Run `java -jar -Dserver.port=8090 {jarname}.jar' & Tomcat boots up on port 8090, instead of 8080. 
+		 *  Run `java -jar -Dserver.port=8090 {jarname}.jar' & Tomcat boots up on port 8090, instead of 8080.  
 		 *  Default to port 8080, if no system property is set.
 		 */
         int serverPort = 8080;
