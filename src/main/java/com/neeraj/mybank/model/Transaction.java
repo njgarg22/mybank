@@ -10,7 +10,7 @@ public class Transaction {
 	private String id;
 	private BigDecimal amount;
 	
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mmZ")
+    	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mmZ")
 	private ZonedDateTime timestamp;
 	private String reference;
 	
