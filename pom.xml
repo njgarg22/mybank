@@ -28,12 +28,18 @@
         </dependency>  
         
         <!-- When used with Jackson 2.x, Java 8 support is provided via a separate modules.
-        	This dependency `provides com.fasterxml.jackson.datatype.jsr310.JavaTimeModule` -->
+        	This dependency provides `com.fasterxml.jackson.datatype.jsr310.JavaTimeModule` -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.11.0</version>
-        </dependency>               
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.7.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
