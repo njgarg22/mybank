@@ -4,6 +4,7 @@ target/**
 *.war
 *.ear
 *.class
+*.iml
 
 dependency-reduced-pom.xml
 tomcat.8080/**
@@ -30,3 +31,6 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+
+# IntelliJ
+.idea
