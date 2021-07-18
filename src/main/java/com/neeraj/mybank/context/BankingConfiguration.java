@@ -7,10 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @ComponentScan(basePackageClasses = ApplicationLauncher.class)
 @PropertySource("classpath:application.properties")
+@EnableWebMvc
 public class BankingConfiguration {
 
     @Bean
@@ -19,4 +21,5 @@ public class BankingConfiguration {
         return new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
+    // No need to define bean for MethodValidationPostProcessor as of now.
 }

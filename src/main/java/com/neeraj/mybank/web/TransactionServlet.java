@@ -15,6 +15,7 @@ import com.neeraj.mybank.model.Transaction;
 import com.neeraj.mybank.service.TransactionService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+// Redundant due to TransactionController
 public class TransactionServlet extends HttpServlet{
 
 	private ObjectMapper objectMapper;
