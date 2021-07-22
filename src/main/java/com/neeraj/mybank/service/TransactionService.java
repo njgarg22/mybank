@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 import com.neeraj.mybank.model.Transaction;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,10 +23,16 @@ public class TransactionService {
 	public List<Transaction> findAll(){
 		return transactions;
 	}
-	
-	public Transaction create(BigDecimal amount, String reference) {
+
+	public List<Transaction> findAllByReceivingUserId(String receivingUserId){
+		return transactions.stream()
+				.filter(tx -> tx.getReceivingUserId().equalsIgnoreCase(receivingUserId))
+				.collect(Collectors.toList());
+	}
+
+	public Transaction create(BigDecimal amount, String reference, String receivingUserId) {
 		ZonedDateTime timestamp = ZonedDateTime.now();
-		Transaction transaction = new Transaction(amount, timestamp, reference, bankSlogan);
+		Transaction transaction = new Transaction(amount, timestamp, reference, bankSlogan, receivingUserId);
 		transactions.add(transaction);
 		return transaction;
 	}
