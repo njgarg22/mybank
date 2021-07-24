@@ -95,7 +95,10 @@ Open http://localhost:8080/ to see the welcome page saying: `"Welcome to My Bank
 
 ## Account Page
 
-1. Open http://localhost:8080/account/Neeraj to see the `Account Page` for the given `receivingUserId`. It will show the following output:
+1. Open http://localhost:8080/account/Neeraj to see the `Account Page` for the given `receivingUserId`. It will show all the existing transaction as an `HTML`. Following is the output:
 
-    <img src="AccountPage.png" width=800 />
+    <img src="Images/AccountPageGet.png" width=800 />
 
+1. You can also fill up the required values in the `form` and submit the `form` to create a new transaction. It will update the list immediately.
+
+    <img src="Images/AccountPagePost.png" width=800 />
