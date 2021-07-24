@@ -91,7 +91,10 @@ A simple Java web-app based on `Spring Web MVC` with an embedded `Tomcat` contai
 
 ## Welcome Page
 
-Open http://localhost:8080/ to see the welcome page saying: `"Welcome to My Bank. Your money is safe with us"`.
+Open http://localhost:8080/ to see the welcome page saying:
+
+<img src="Images/WelcomePage.png" width=800 />
+
 
 ## Account Page
 
