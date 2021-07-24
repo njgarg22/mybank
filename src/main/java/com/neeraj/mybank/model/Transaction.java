@@ -9,20 +9,24 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Transaction {
 	private String id;
 	private BigDecimal amount;
-	
-    	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mmZ")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mmZ")
 	private ZonedDateTime timestamp;
 	private String reference;
-	
+	private String bankSlogan;
+	private String receivingUserId;
+
 	public Transaction() {
 		
 	}
 	
-	public Transaction(BigDecimal amount, ZonedDateTime timestamp, String reference) {
+	public Transaction(BigDecimal amount, ZonedDateTime timestamp, String reference, String bankSlogan, String receivingUserId) {
 		this.id = UUID.randomUUID().toString();
 		this.amount = amount;
 		this.timestamp = timestamp;
 		this.reference = reference;
+		this.bankSlogan = bankSlogan;
+		this.receivingUserId = receivingUserId;
 	}
 
 	public String getId() {
@@ -56,5 +60,20 @@ public class Transaction {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	
+
+	public String getBankSlogan() {
+		return bankSlogan;
+	}
+
+	public void setBankSlogan(String bankSlogan) {
+		this.bankSlogan = bankSlogan;
+	}
+
+	public String getReceivingUserId() {
+		return receivingUserId;
+	}
+
+	public void setReceivingUserId(String receivingUserId) {
+		this.receivingUserId = receivingUserId;
+	}
 }

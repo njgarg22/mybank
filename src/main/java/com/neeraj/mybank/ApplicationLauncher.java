@@ -1,11 +1,16 @@
 package com.neeraj.mybank;
 
+import com.neeraj.mybank.context.BankingConfiguration;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.startup.Tomcat;
 
-import com.neeraj.mybank.web.TransactionServlet;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
+
+import javax.servlet.ServletContext;
 
 public class ApplicationLauncher {
 
@@ -24,11 +29,25 @@ public class ApplicationLauncher {
         tomcat.setPort(serverPort);
         tomcat.getConnector();
 
-        Context ctx = tomcat.addContext("", null);
-        Wrapper servletWrapper = Tomcat.addServlet(ctx, "TransactionServlet", new TransactionServlet());
+        Context tomcatCtx = tomcat.addContext("", null);
+
+        WebApplicationContext appCtx = createContext(tomcatCtx.getServletContext());
+
+        DispatcherServlet dispatcherServlet = new DispatcherServlet(appCtx);
+
+        Wrapper servletWrapper = Tomcat.addServlet(tomcatCtx, "dispatcherServlet", dispatcherServlet);
         servletWrapper.setLoadOnStartup(1);
         servletWrapper.addMapping("/*");
 
         tomcat.start();
+    }
+
+    private static WebApplicationContext createContext(ServletContext servletContext){
+        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+        ctx.register(BankingConfiguration.class);
+        ctx.setServletContext(servletContext);
+        ctx.refresh();
+        ctx.registerShutdownHook();
+        return ctx;
     }
 }
