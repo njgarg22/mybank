@@ -12,6 +12,12 @@ A simple Java web-app based on `Spring Web MVC` with an embedded `Tomcat` contai
 
 1. Using `Postman`, hit the below endpoints.
 
+## Welcome Page
+
+Open http://localhost:8080/ to see the welcome page saying:
+
+<img src="Images/WelcomePage.png" width=800 />
+
 ## GET Endpoints
 
 1. GET http://localhost:8080/transactions : Returns all the transactions
@@ -87,14 +93,6 @@ A simple Java web-app based on `Spring Web MVC` with an embedded `Tomcat` contai
     ```
 
 1. POST http://localhost:8080/unregisteredPath : Returns `404 Not Found`.
-
-
-## Welcome Page
-
-Open http://localhost:8080/ to see the welcome page saying:
-
-<img src="Images/WelcomePage.png" width=800 />
-
 
 ## Account Page
 
